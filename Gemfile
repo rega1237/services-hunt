@@ -33,6 +33,12 @@ gem 'jbuilder'
 # Rubocop ruby on rails linter
 gem 'rubocop', '>= 1.0', '< 2.0'
 
+# Friendly ids for slugs
+gem 'friendly_id', '~> 5.4.0'
+
+# Pagination gem
+gem 'will_paginate', '~> 3.3'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
