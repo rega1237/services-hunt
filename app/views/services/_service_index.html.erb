@@ -11,7 +11,13 @@
             <%= image_tag(service.image, :class => "w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4") %>
             <div class="flex-grow">
               <h2 class="text-gray-900 title-font font-medium"><%= service.name %></h2>
-              <p class="text-gray-500">UI Designer</p>
+              <% service.categories.each do |category| %>
+                <% if category == service.categories.last %>
+                  <span class="text-gray-500"> <%= category.name %> </span>
+                <% else %>
+                  <span class="text-gray-500"> <%= category.name %> | </span>
+                <% end %>
+              <% end %>
               <p class="text-gray-900 newline"> <%= service_description(service.description) %> </p>
               <%= link_to "See more...", service_path(service) %>
             </div>
