@@ -11,11 +11,23 @@ seed_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don
 
 Phasellus lobortis, nisl sed euismod tincidunt, turpis mauris dictum sapien, nec consequat est tortor bibendum nunc. Quisque vel neque nec elit sodales finibus sed quis felis. Nulla quis malesuada diam. Vivamus blandit metus gravida nulla dictum lacinia. Ut eget sagittis nisi. Aliquam sit amet risus cursus arcu semper ultrices. Fusce ut nisl enim. Praesent vitae tincidunt arcu, eget pellentesque nisl. Etiam purus nulla, commodo a hendrerit sit amet."
 
+seed_categories = ["Cakes", "Car Wash", "Barber Shop", "Design", "Vet", "C.A", "Plumbers", "Car", "Mechatronics", "Garden", "Shoes", "Pharma", "Burger", "Style", "Company", "Cleaners"]
+
+def create_categories(categories)
+  categories.each do |category|
+    Category.create(name: category)
+  end
+end
+
 def create_services(services, description)
   services.each do |service|
     service = Service.create(name: service, description: description)
     service.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', "logo_wb.png")), filename: "logo_wb.png", content_type: 'image/png')
+    2.times do
+      service.categories << Category.all.sample
+    end
   end
 end
 
+create_categories(seed_categories)
 create_services(seed_services, seed_description)

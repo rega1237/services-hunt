@@ -57,8 +57,9 @@ class ServicesController < ApplicationController
   end
 
   def search
+    current_page = params[:page] || 1
     @q = params[:q]
-    @services = Service.where('name LIKE ?', "%#{@q}%")
+    @services = Service.where('name LIKE ?', "%#{@q}%").paginate(page: current_page, per_page: 12)
   end
 
   private
@@ -70,6 +71,6 @@ class ServicesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def service_params
-    params.require(:service).permit(:name, :description, :image)
+    params.require(:service).permit(:name, :description, :image, category_ids: [])
   end
 end
