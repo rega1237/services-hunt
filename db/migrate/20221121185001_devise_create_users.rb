@@ -6,6 +6,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :full_name,          null: false, default: ""
+      t.string :uid # for omniauth
+      t.string :avatar_url # for omniauth
+      t.string :provider # for omniauth
 
       ## Recoverable
       t.string   :reset_password_token
