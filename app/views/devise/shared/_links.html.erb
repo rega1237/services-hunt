@@ -1,0 +1,86 @@
+<%- if controller_name != 'sessions' && controller_name != 'registrations' %>
+  <%= link_to new_session_path(resource_name) do %>
+    <div class= "flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black relative">
+      <span class= "absolute left-4">
+        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="7" r="5" stroke="black" stroke-width="2"/>
+          <path d="M17 14H17.3517C18.8646 14 20.1408 15.1266 20.3285 16.6279L20.719 19.7519C20.8682 20.9456 19.9374 22 18.7344 22H5.26556C4.06257 22 3.1318 20.9456 3.28101 19.7519L3.67151 16.6279C3.85917 15.1266 5.13538 14 6.64835 14H7" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span> Login </span>
+    </div>
+  <% end %>
+<% end %>
+
+<!--
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+<% end %>
+
+-->
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to new_password_path(resource_name) do %>
+    <div class= "flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black relative">
+      <span class= "absolute left-4">
+        <svg width="24px" height="24px" viewBox="0 0 367.578 367.578" style="enable-background:new 0 0 367.578 367.578;" xml:space="preserve">
+          <path d="M281.541,97.751c0-53.9-43.851-97.751-97.751-97.751S86.038,43.851,86.038,97.751c0,44.799,30.294,82.652,71.472,94.159
+            v144.668c0,4.026,1.977,9.1,4.701,12.065l14.514,15.798c1.832,1.993,4.406,3.136,7.065,3.136s5.233-1.143,7.065-3.136l14.514-15.798
+            c2.724-2.965,4.701-8.039,4.701-12.065v-7.387l14.592-9.363c2.564-1.646,4.035-4.164,4.035-6.909c0-2.744-1.471-5.262-4.036-6.907
+            l-14.591-9.363v-0.207l14.592-9.363c2.564-1.646,4.035-4.164,4.035-6.909c0-2.744-1.471-5.262-4.036-6.907l-14.591-9.363v-0.207
+            l14.592-9.363c2.564-1.646,4.035-4.164,4.035-6.908c0-2.745-1.471-5.263-4.036-6.909l-14.591-9.363V191.91
+            C251.246,180.403,281.541,142.551,281.541,97.751z M183.789,104.948c-20.985,0-37.996-17.012-37.996-37.996
+            s17.012-37.996,37.996-37.996s37.996,17.012,37.996,37.996S204.774,104.948,183.789,104.948z"/>
+        </svg>
+      </span>
+      <span> Forgot Your Password?</span>
+    </div>
+  <%end%>
+<% end %>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <div class="flex flex-col max-w-md space-y-5">
+    <%= link_to new_confirmation_path(resource_name) do %>
+          <div class= "flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black relative">
+            <span class="absolute left-4">  
+              <svg width="24px" height="24px" viewBox="0 0 330.001 330.001" style="enable-background:new 0 0 330.001 330.001;" xml:space="preserve">
+                <g id="XMLID_348_">
+                  <path id="XMLID_350_" d="M173.871,177.097c-2.641,1.936-5.756,2.903-8.87,2.903c-3.116,0-6.23-0.967-8.871-2.903L30,84.602
+                    L0.001,62.603L0,275.001c0.001,8.284,6.716,15,15,15L315.001,290c8.285,0,15-6.716,15-14.999V62.602l-30.001,22L173.871,177.097z"
+                  />
+                  <polygon id="XMLID_351_" points="165.001,146.4 310.087,40.001 19.911,40 	"/>
+                </g>
+            </span>
+            <span> Resend Confirmation</span>
+          </div>
+    <%end%>
+  </div>
+<% end %>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+<% end %>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= form_for "Login",
+      url: omniauth_authorize_path(resource_name, provider),
+      method: :post,
+      data: {turbo: "false"}  do |f| %>
+      <div class="flex flex-col max-w-md space-y-5">
+        <%= f.button nil, class: "flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black relative" do %>
+          <span class="absolute left-4">
+            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <path fill="#EA4335 " d="M5.26620003,9.76452941 C6.19878754,6.93863203 8.85444915,4.90909091 12,4.90909091 C13.6909091,4.90909091 15.2181818,5.50909091 16.4181818,6.49090909 L19.9090909,3 C17.7818182,1.14545455 15.0545455,0 12,0 C7.27006974,0 3.1977497,2.69829785 1.23999023,6.65002441 L5.26620003,9.76452941 Z"/>
+              <path fill="#34A853" d="M16.0407269,18.0125889 C14.9509167,18.7163016 13.5660892,19.0909091 12,19.0909091 C8.86648613,19.0909091 6.21911939,17.076871 5.27698177,14.2678769 L1.23746264,17.3349879 C3.19279051,21.2936293 7.26500293,24 12,24 C14.9328362,24 17.7353462,22.9573905 19.834192,20.9995801 L16.0407269,18.0125889 Z"/>
+              <path fill="#4A90E2" d="M19.834192,20.9995801 C22.0291676,18.9520994 23.4545455,15.903663 23.4545455,12 C23.4545455,11.2909091 23.3454545,10.5272727 23.1818182,9.81818182 L12,9.81818182 L12,14.4545455 L18.4363636,14.4545455 C18.1187732,16.013626 17.2662994,17.2212117 16.0407269,18.0125889 L19.834192,20.9995801 Z"/>
+              <path fill="#FBBC05" d="M5.27698177,14.2678769 C5.03832634,13.556323 4.90909091,12.7937589 4.90909091,12 C4.90909091,11.2182781 5.03443647,10.4668121 5.26620003,9.76452941 L1.23999023,6.65002441 C0.43658717,8.26043162 0,10.0753848 0,12 C0,13.9195484 0.444780743,15.7301709 1.23746264,17.3349879 L5.27698177,14.2678769 Z"/>
+            </svg>
+          </span>
+          <span>Sign in with Google</span>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
