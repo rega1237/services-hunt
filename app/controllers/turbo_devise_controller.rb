@@ -1,10 +1,11 @@
 class TurboDeviseController < ApplicationController
+  # rubocop:disable all
   class Responder < ActionController::Responder
     def to_turbo_stream
       controller.render(options.merge(formats: :html))
-    rescue ActionView::MissingTemplate => e
+    rescue ActionView::MissingTemplate => error
       if get?
-        raise e
+        raise error
       elsif has_errors? && default_action
         render rendering_options.merge(formats: :html, status: :unprocessable_entity)
       else
@@ -15,4 +16,5 @@ class TurboDeviseController < ApplicationController
 
   self.responder = Responder
   respond_to :html, :turbo_stream
+  # rubocop:enable all
 end
