@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :services do
     get 'search', on: :collection
   end
+
+  resources :categories, only: [:show, :new, :create, :edit, :update, :destroy]
 end
