@@ -59,7 +59,9 @@ class CategoriesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_category
+    current_page = params[:page] || 1
     @category = Category.friendly.find(params[:id])
+    @services = @category.services.paginate(page: current_page, per_page: 12)
   end
 
   # Only allow a list of trusted parameters through.

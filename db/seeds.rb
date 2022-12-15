@@ -11,11 +11,12 @@ seed_description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Don
 
 Phasellus lobortis, nisl sed euismod tincidunt, turpis mauris dictum sapien, nec consequat est tortor bibendum nunc. Quisque vel neque nec elit sodales finibus sed quis felis. Nulla quis malesuada diam. Vivamus blandit metus gravida nulla dictum lacinia. Ut eget sagittis nisi. Aliquam sit amet risus cursus arcu semper ultrices. Fusce ut nisl enim. Praesent vitae tincidunt arcu, eget pellentesque nisl. Etiam purus nulla, commodo a hendrerit sit amet."
 
-seed_categories = ["Cakes", "Car Wash", "Barber Shop", "Design", "Vet", "C.A", "Plumbers", "Car", "Mechatronics", "Garden", "Shoes", "Pharma", "Burger", "Style", "Company", "Cleaners"]
+seed_categories = ["Cakes",  "Barber", "Design", "Vet", "Plumbers", "Mechanics", "Electronic", "Gardeners", "Pharmacy", "Restaurants", "Cleaners"]
 
 def create_categories(categories)
   categories.each do |category|
-    Category.create(name: category)
+    category = Category.create(name: category)
+    category.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'categories', "#{category.name}.jpg")), filename: "#{category}.jpg", content_type: 'image/jpg')
   end
 end
 

@@ -36,6 +36,9 @@
       <% end %>
     
       <%= yield %>
+      <% unless devise_controller? %>
+        <%= render 'layouts/partials/footer'%>
+      <% end %>
     </main>
   </body>
 </html>
