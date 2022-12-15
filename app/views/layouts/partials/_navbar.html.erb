@@ -4,14 +4,16 @@
       <%= image_tag "logo_wb.png", size:"150x100" %>
     <% end %>
     <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+      <%= link_to root_path do %>
+        <p class="mr-5 hover:text-gray-900">Home</p>
+      <% end %>
       <%= link_to services_path do %>
         <p class="mr-5 hover:text-gray-900">All Services</p>
       <% end %>
-      <a class="mr-5 hover:text-gray-900">Categories</a>
       <% if current_user %>
-        <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
+        <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "mr-5 hover:text-gray-900" %>
       <% else %>
-        <%= link_to "Sign in", new_user_session_path %>
+        <%= link_to "Sign in", new_user_session_path, class: "mr-5 hover:text-gray-900" %>
       <% end %>
     </nav>
     <%= form_tag search_services_path, method: :get do %>
