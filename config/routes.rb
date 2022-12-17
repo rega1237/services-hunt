@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :services do
     get 'search', on: :collection
+    resources :comments, only: [:create, :index, :delete]
   end
 
   resources :categories, only: [:show, :new, :create, :edit, :update, :destroy]

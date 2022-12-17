@@ -8,7 +8,9 @@ class ServicesController < ApplicationController
   end
 
   # GET /services/1 or /services/1.json
-  def show; end
+  def show
+    @comments = @service.comments
+  end
 
   # GET /services/new
   def new
@@ -59,7 +61,7 @@ class ServicesController < ApplicationController
   def search
     current_page = params[:page] || 1
     @q = params[:q]
-    @services = Service.where('name LIKE ?', "%#{@q}%").paginate(page: current_page, per_page: 12)
+    @services = Service.where('lower(name) LIKE ?', "%#{@q.downcase}%").paginate(page: current_page, per_page: 12)
   end
 
   private
