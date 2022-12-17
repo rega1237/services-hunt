@@ -1,29 +1,12 @@
-<%= form_with(model: comment, class: "contents") do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with model: [@service, Comment.new], method: :post do |form| %>
   <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :service_id %>
-    <%= form.text_field :service_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
 
   <div class="my-5">
     <%= form.label :rating %>
-    <%= form.number_field :rating, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :rating, ["1 Star", "2 Star", "3 Star", "4 Star", "5 Star"] %>
   </div>
 
   <div class="my-5">
