@@ -3,7 +3,7 @@
 
     <%= render @service %>
 
-    <% if current_user && @service.comments.any? {|comment| comment.user_id != current_user.id} || @service.comments.length < 1  %>
+    <% if current_user && (@service.comments.any? {|comment| comment.user_id != current_user.id} || @service.comments.length < 1 ) %>
       <%= render 'comments/form', object: @comment  %>
     <% elsif current_user && @service.comments.any? {|comment| comment.user_id == current_user.id} %>
       <p class="text-center text-[1rem] font-bold text-[#3b82f680] py-3"> Thanks for your review! </p>
