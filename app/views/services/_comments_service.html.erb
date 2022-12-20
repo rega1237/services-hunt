@@ -23,7 +23,7 @@
           <p class="mt-4 text-md text-gray-600"><%= comment.body %></p>
           <div class="flex justify-between items-center">
             <div class="mt-4 flex items-center space-x-4 py-6">
-              <div class="">
+              <div>
                 <% if comment.user.avatar_url? %>
                   <%= image_tag(comment.user.avatar_url, class:"w-12 h-12 rounded-full") %>
                 <% elsif comment.user.avatar.attached?%>
