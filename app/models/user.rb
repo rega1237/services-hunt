@@ -4,6 +4,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
+  has_many :services, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   has_many :comments, dependent: :destroy
 

@@ -39,7 +39,7 @@ end
 def create_services(services, description)
   puts "Creating services..."
   services.each do |service|
-    service = Service.create(name: service, description: description)
+    service = Service.create(name: service, description: description, user_id: User.all.sample.id)
     service.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', "logo_wb.png")), filename: "logo_wb.png", content_type: 'image/png')
     2.times do
       service.categories << Category.all.sample
