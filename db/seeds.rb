@@ -18,19 +18,23 @@ seed_categories = ["Cakes",  "Barber", "Design", "Vet", "Plumbers", "Mechanics",
 
 def create_users(users)
   puts "Creating users..."
-  users.each do |user|
-    user = User.new(email: user[0], full_name: user[1])
+  users.each_with_index do |user, index|
+    if index == 0
+      user = User.new(email: user[0], full_name: user[1] , admin:true)
+    else
+      user = User.new(email: user[0], full_name: user[1])
+    end
     user.password = "123456"
     user.skip_confirmation!
     user.save
-  end
+  end 
   puts "Users created!"
 end
 
 def create_categories(categories)
   puts "Creating categories..."
   categories.each do |category|
-    category = Category.create(name: category)
+    category = Category.create(name: category, active: true)
     category.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'categories', "#{category.name}.jpg")), filename: "#{category}.jpg", content_type: 'image/jpg')
   end
   puts "Categories created!"
