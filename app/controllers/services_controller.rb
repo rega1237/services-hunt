@@ -15,10 +15,13 @@ class ServicesController < ApplicationController
   # GET /services/new
   def new
     @service = Service.new
+    authorize! :new, @service
   end
 
   # GET /services/1/edit
-  def edit; end
+  def edit
+    authorize! :edit, @service
+  end
 
   # POST /services or /services.json
   def create
