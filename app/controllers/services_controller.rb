@@ -15,10 +15,13 @@ class ServicesController < ApplicationController
   # GET /services/new
   def new
     @service = Service.new
+    authorize! :new, @service
   end
 
   # GET /services/1/edit
-  def edit; end
+  def edit
+    authorize! :edit, @service
+  end
 
   # POST /services or /services.json
   def create
@@ -53,7 +56,7 @@ class ServicesController < ApplicationController
     @service.destroy
 
     respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user), notice: 'Service was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

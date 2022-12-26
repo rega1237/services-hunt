@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:show, :new, :create, :edit, :update, :destroy]
+  
+  resources :users, only: [:show]
 end

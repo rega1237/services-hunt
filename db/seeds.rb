@@ -15,22 +15,27 @@ Phasellus lobortis, nisl sed euismod tincidunt, turpis mauris dictum sapien, nec
 
 seed_categories = ["Cakes",  "Barber", "Design", "Vet", "Plumbers", "Mechanics", "Electronic", "Gardeners", "Pharmacy", "Restaurants", "Cleaners"]
 
+seed_comments = [[1, "Very bad service", "Horrible"], [2, "Bad service", "The owner bad client service"], [3, "Very good service", "Excellent client service"], [4, "Excellent service", "Excellent price and quality"], [5, "Excellent service", "The best in the city"]] 
 
 def create_users(users)
   puts "Creating users..."
-  users.each do |user|
-    user = User.new(email: user[0], full_name: user[1])
+  users.each_with_index do |user, index|
+    if index == 0
+      user = User.new(email: user[0], full_name: user[1] , admin:true)
+    else
+      user = User.new(email: user[0], full_name: user[1])
+    end
     user.password = "123456"
     user.skip_confirmation!
     user.save
-  end
+  end 
   puts "Users created!"
 end
 
 def create_categories(categories)
   puts "Creating categories..."
   categories.each do |category|
-    category = Category.create(name: category)
+    category = Category.create(name: category, active: true)
     category.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'categories', "#{category.name}.jpg")), filename: "#{category}.jpg", content_type: 'image/jpg')
   end
   puts "Categories created!"
@@ -39,7 +44,7 @@ end
 def create_services(services, description)
   puts "Creating services..."
   services.each do |service|
-    service = Service.create(name: service, description: description)
+    service = Service.create(name: service, description: description, user_id: User.all.sample.id)
     service.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', "logo_wb.png")), filename: "logo_wb.png", content_type: 'image/png')
     2.times do
       service.categories << Category.all.sample
@@ -48,6 +53,23 @@ def create_services(services, description)
   puts "Services created!"
 end
 
+def create_comments(comments)
+  puts "Creating comments..."
+  comments.each do |comment|
+    10.times do
+      service = Service.all.sample
+      user = User.all.sample
+      if service.user_id != user.id && !service.comments.where(user_id: user.id).exists?
+        Comment.create(user_id: user.id, service_id: service.id, rating: comment[0], body: comment[1], title: comment[2])
+      else
+        Comment.create(user_id: User.all.sample.id, service_id: service.id, rating: comment[0], body: comment[1], title: comment[2])
+      end
+    end
+  end
+  puts "Comments created!"
+end
+
 create_users(seed_users)
 create_categories(seed_categories)
 create_services(seed_services, seed_description)
+create_comments(seed_comments)

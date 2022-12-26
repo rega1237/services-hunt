@@ -1,0 +1,7 @@
+<%= render 'manage_account'%>
+
+<%= render 'user_services'%>
+
+<%= render 'categories_admin' unless !current_user.admin? %> 
+
+<%= render 'create_new_category' %>
