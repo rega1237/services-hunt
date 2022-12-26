@@ -6,4 +6,7 @@ class Category < ApplicationRecord
 
   has_many :service_categories, dependent: :destroy
   has_many :services, through: :service_categories
+
+  validates :name, presence: true, uniqueness: true
+  validates :image, presence: true
 end
