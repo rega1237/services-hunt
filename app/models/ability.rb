@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     return unless user.present?
 
-    can :manage, Service, user: user
+    can :manage, Service, :user_id => user.id
     can %i[read create], Category
     can %i[read update destroy], User, id: user.id
 
