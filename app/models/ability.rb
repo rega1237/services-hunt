@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     return unless user.present?
+
     #rubocop:disable all
     can :manage, Service, :user_id => user.id
     #rubocop:enable all
