@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     authorize! :show, @user
     @services = Service.where(user: @user)
+    @categories = Category.all
   end
 
   private
