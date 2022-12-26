@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
-  
+
   belongs_to :user
   has_one_attached :image, dependent: :destroy
   has_many :service_categories, dependent: :destroy

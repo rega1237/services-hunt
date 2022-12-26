@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit
-    authorize! :edit, @category 
+    authorize! :edit, @category
   end
 
   # POST /categories or /categories.json
