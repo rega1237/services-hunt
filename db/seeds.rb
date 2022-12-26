@@ -35,8 +35,9 @@ end
 def create_categories(categories)
   puts "Creating categories..."
   categories.each do |category|
-    category = Category.create(name: category, active: true)
+    category = Category.new(name: category, active: true)
     category.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'categories', "#{category.name}.jpg")), filename: "#{category}.jpg", content_type: 'image/jpg')
+    category.save
   end
   puts "Categories created!"
 end
