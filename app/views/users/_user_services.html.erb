@@ -1,7 +1,8 @@
 <h2 class="text-center text-3xl font-semibold pt-9"> My Services </h2>
 
+<div class="flex flex-col px-3 lg:flex-row lg:flex-wrap lg:justify-evenly">
 <% @services.each do |service| %>
-  <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow my-10">
+  <div class="max-w-xl p-6 bg-white rounded-lg shadow mt-10">
     <h1 class="text-2xl font-medium mb-5"><%= service.name %></h1>
     <div class="inline-flex items-center rounded-md shadow-sm">
       <%= link_to edit_user_registration_path(current_user) do %>
@@ -38,8 +39,9 @@
     </div>
   </div>
 <%end%>
+</div>
 
-<div class="w-100 text-center">
+<div class="w-100 text-center mt-5">
   <%= link_to new_service_path  do %>
     <div class="rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer"> 
       Create New Service 
