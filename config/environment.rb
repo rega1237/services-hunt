@@ -3,7 +3,7 @@ require_relative "application"
 
 # Initialize the Rails application.
 Rails.application.initialize!
-
+=begin
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.perform_deliveries = true
 ActionMailer::Base.smtp_settings = {
@@ -17,3 +17,4 @@ ActionMailer::Base.smtp_settings = {
   open_timeout:         5,
   read_timeout:         5 
 }
+=end
