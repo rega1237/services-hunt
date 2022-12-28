@@ -5,7 +5,8 @@ RSpec.describe Comment, type: :model do
   include_context 'request_context'
 
   before :all do
-    @comment = Comment.new(user_id: User.first.id, service_id: Service.first.id, rating: 5, title: "Title", body: "Body")
+    @comment = Comment.new(user_id: User.first.id, service_id: Service.first.id, rating: 5, title: 'Title',
+                           body: 'Body')
   end
 
   describe 'validations' do

@@ -3,7 +3,7 @@ require_relative 'shared'
 
 RSpec.describe Category, type: :request do
   include_context 'request_context'
-  
+
   before :each do
     user = User.first
     login_as(user)

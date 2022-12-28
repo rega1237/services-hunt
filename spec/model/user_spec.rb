@@ -5,7 +5,8 @@ RSpec.describe User, type: :model do
   include_context 'request_context'
 
   before :all do
-    @user = User.new(email: 'rega1237@gmail.com', full_name: 'Rega', admin: true, password: 'password', password_confirmation: 'password')
+    @user = User.new(email: 'rega1237@gmail.com', full_name: 'Rega', admin: true, password: 'password',
+                     password_confirmation: 'password')
     @user.skip_confirmation!
     @user.save
   end
@@ -36,4 +37,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-

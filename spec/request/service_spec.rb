@@ -31,7 +31,7 @@ RSpec.describe User, type: :request do
     end
 
     it 'update service returns http success' do
-      patch '/services/olga-cake-s', params: { service: { name: 'test', description: 'test'} }
+      patch '/services/olga-cake-s', params: { service: { name: 'test', description: 'test' } }
       expect(response).to have_http_status(:found)
     end
 
@@ -40,4 +40,4 @@ RSpec.describe User, type: :request do
       expect(response).to have_http_status(:found)
     end
   end
-end    
+end

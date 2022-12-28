@@ -5,8 +5,9 @@ RSpec.describe Service, type: :model do
   include_context 'request_context'
 
   before :all do
-    @service = Service.new(name: "Service", description: "Description", user_id: User.first.id)
-    @service.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', "logo_wb.png")), filename: "logo_wb.png", content_type: 'image/png')
+    @service = Service.new(name: 'Service', description: 'Description', user_id: User.first.id)
+    @service.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'logo_wb.png')),
+                          filename: 'logo_wb.png', content_type: 'image/png')
     @service.save
   end
 

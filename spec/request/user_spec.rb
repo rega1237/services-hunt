@@ -3,11 +3,11 @@ require_relative 'shared'
 
 RSpec.describe User, type: :request do
   include_context 'request_context'
-  
+
   describe 'GET /users' do
     it 'show the user profile' do
       user = User.first
-      login_as(user)      
+      login_as(user)
       get '/users/rafael-guzman'
       expect(response).to have_http_status(:success)
     end
