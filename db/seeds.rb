@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 seed_users = [["rega1237@mail.com", "Rafael Guzman"], ["olga@mail.com", "Olga Barrios"], ["hugo@mail.com", "Hugo Gomez"], ["jhon@mail.com", "Jhon Doe"]]
 
 seed_services = ["Olga Cake's", "Wash your car", "Good Luk Barber Shop", "Cacao Desing's", "Manu Vet's", "Impulso C.A", "YMCA Plumbers", "Key Car's", "Mechatronics Leo", "Cute Garden", "Mohamed Shoes", "Plus Pharma", "Michael Burger's", "Adri Style's", "Genus Company", "Crazy Cleaners"]
@@ -35,8 +27,9 @@ end
 def create_categories(categories)
   puts "Creating categories..."
   categories.each do |category|
-    category = Category.create(name: category, active: true)
+    category = Category.new(name: category, active: true)
     category.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'categories', "#{category.name}.jpg")), filename: "#{category}.jpg", content_type: 'image/jpg')
+    category.save
   end
   puts "Categories created!"
 end
@@ -44,8 +37,9 @@ end
 def create_services(services, description)
   puts "Creating services..."
   services.each do |service|
-    service = Service.create(name: service, description: description, user_id: User.all.sample.id)
+    service = Service.new(name: service, description: description, user_id: User.all.sample.id)
     service.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', "logo_wb.png")), filename: "logo_wb.png", content_type: 'image/png')
+    service.save
     2.times do
       service.categories << Category.all.sample
     end
